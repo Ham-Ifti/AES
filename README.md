@@ -2,7 +2,9 @@
 
 1) Have python installed
 2) Run "aes.py" using "python ./aes.py {Key Size} {Encrypt Or Decrypt} {EBC or CBC}".
-    - Where Key Size = 128, 192, 256
+   Where:
+  
+    - Key Size = 128, 192, 256
 
     - Encrypt or Decrypt = enc or dec
 
