@@ -1,4 +1,5 @@
 import sys
+import time
 
 rcon = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1B, 0x36]
 
@@ -377,10 +378,21 @@ def main():
     
     if (encOrDec == 'enc'):
         pt = readPlaintText("pt.pt")
+        enc_time1 = time.time()
         encrypt(pt, key, ebcOrcbc)
+        enc_time2 = (time.time() - enc_time1)
+        print('Execution time in seconds: ' + str(enc_time2))
+        throughput = len(pt)/enc_time2
+        print(f"Throughput for Encryption : {throughput}")
+        
     else:
         cipher = readPlaintText("encrypted.enc")
+        dec_time1 = time.time()
         decrypt(cipher, key, ebcOrcbc)
+        dec_time2 = (time.time() - dec_time1)
+        print('Execution time in seconds: ' + str(dec_time2))
+        throughput = (len(cipher)*16)/dec_time2
+        print(f"Throughput for Decryption : {throughput}")
 
 
 if __name__ == '__main__':

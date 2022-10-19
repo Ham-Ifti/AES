@@ -20,6 +20,10 @@
 4) Apply encryption/decryption using encyption/decryption Flag
 5) Write the results to respective files (.enc for encryption and .dec for decryption)
 
+## Throughput:
+1)The throughput calculated for the encryption process is: 458.016 on average.
+2)The throughput calculated for the decryption process is: 6272.73 on average.
+
 ## Extra Credit:
 
 1) Implemented AES in CBC mode
