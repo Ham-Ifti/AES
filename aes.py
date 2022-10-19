@@ -382,7 +382,7 @@ def main():
         encrypt(pt, key, ebcOrcbc)
         enc_time2 = (time.time() - enc_time1)
         print('Execution time in seconds: ' + str(enc_time2))
-        throughput = len(pt)/enc_time2
+        throughput = (len(pt)*16)/enc_time2
         print(f"Throughput for Encryption : {throughput}")
         
     else:

@@ -21,7 +21,7 @@
 5) Write the results to respective files (.enc for encryption and .dec for decryption)
 
 ## Throughput:
-1) The throughput calculated for the encryption process is: 458.016 bytes/sec on average.
+1) The throughput calculated for the encryption process is: 3979.162 bytes/sec on average.
 2) The throughput calculated for the decryption process is: 6272.73 bytes/sec on average.
 
 ## Extra Credit:
