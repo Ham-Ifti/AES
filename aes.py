@@ -50,8 +50,6 @@ IV = []
 rounds = 0
 Nk = 0
 keys = []
-cipher = []
-decrypted_cipher = []
 
 
 def printMatrix(matrix):
@@ -177,28 +175,16 @@ def readPlaintText(fileName):
         if (len(lines[i]) < 32):
 
             lines[i] = lines[i].zfill(32)
-
     PT = []
-
     for i in range(len(lines)):
-
         subPT = []
-
         for j in range(0, 4):
-
             block = []
-            for k in range(8*j,8*(j+1), 2):
+            for k in range(8 * j, 8 * (j + 1), 2):
                 hexVal = lines[i][k : k+2]
-
                 block.append(int(hexVal, 16))
-
-
             subPT.append(block)
-            
         PT.append(subPT)
-
-    # printMatrix(PT)
-
     return PT
 
 def readKey(fileName, mode = 128):
@@ -248,6 +234,7 @@ def readIV(fileName):
 
         IV.append(subList)
 
+    IV = transposeMatrix(IV)
 
 # For Block Encryption
 def AES_Encrypt(PT, key):
@@ -288,6 +275,7 @@ def AES_decrypt(cipher, key):
 
 def encrypt(plainText, key, ebcorcbc):
     print('cipher')
+    encrypted_cipher = []
     for i in range(len(plainText)):
         block = transposeMatrix(plainText[i])
         if ebcorcbc == 'cbc':
@@ -296,26 +284,26 @@ def encrypt(plainText, key, ebcorcbc):
                 block = addRoundKey(block, IV)
             #Add previous cipher block for current block
             else:
-                block = addRoundKey(block, cipher[i - 1])
-        
-        cipher.append(AES_Encrypt(block, key))
-        printMatrix(cipher[i])
-
-    c1 = [i for s in cipher for i in s]
-    temp = transposeMatrix(c1)
-    c2 = [i for s in temp for i in s]
-    f1 = open('cipher.enc','w')
-    for i in range(len(c2)):
-        c2[i] = format(c2[i],'X')
-        if len(c2[i]) == 1:
-            temp = c2[i]
-            c2[i] = ''
-            c2[i] = '0'+temp
-        f1.writelines(c2[i])
-    f1.close()
+                block = addRoundKey(block, encrypted_cipher[i - 1])
+            
+        encrypted_cipher.append(AES_Encrypt(block, key))
+        printMatrix(encrypted_cipher[i])
+    
+    # Appending Cypher to a string to save to .enc file 
+    cipherString = ""
+    for i in range(len(encrypted_cipher)):
+        block = transposeMatrix(encrypted_cipher[i])
+        block = [hex(k)[2:].upper().zfill(2) for j in block for k in j]
+        cipherString += ("".join(str(i) for i in block)) + '\n'
+    
+    # write to cipher.enc
+    with open('encrypted.enc', 'w') as f:
+        f.write(cipherString[:-1])
 
 
 def decrypt(cipherText, key, ebcorcbc):
+    print('Decipher')
+    decrypted_cipher = []
     for i in range(len(cipherText)):
         block = transposeMatrix(cipherText[i])
         block = AES_decrypt(block, key)
@@ -326,23 +314,23 @@ def decrypt(cipherText, key, ebcorcbc):
                 block = addRoundKey(block, IV)
             #Add previous cipher block for current block
             else:
-                block = addRoundKey(block, cipherText[i - 1])
+                cipherBlock = transposeMatrix(cipherText[i - 1])
+                block = addRoundKey(block, cipherBlock)
         
-        decrypted_cipher.append(block)
-        printMatrix(block)
 
-    c1 = [i for s in decrypted_cipher for i in s]
-    temp = transposeMatrix(c1)
-    c2 = [i for s in temp for i in s]
-    f1 = open('decrypted.dec','w')
-    for i in range(len(c2)):
-        c2[i] = format(c2[i], 'X')
-        if len(c2[i]) == 1:
-            temp = c2[i]
-            c2[i] = ''
-            c2[i] = '0' + temp
-        f1.writelines(c2[i])
-    f1.close()
+        decrypted_cipher.append(block)
+        printMatrix(decrypted_cipher[i])
+
+    # Appending Plaintext to a string to save to .dec file 
+    plainText = ""
+    for i in range(len(decrypted_cipher)):
+        block = transposeMatrix(decrypted_cipher[i])
+        block = [hex(k)[2:].upper().zfill(2) for j in block for k in j]
+        plainText += ("".join(str(i) for i in block)) + '\n'
+    
+    # write to cipher.enc
+    with open('decrypted.dec', 'w') as f:
+        f.write(plainText[:-1])
 
 
 def main():
@@ -386,14 +374,12 @@ def main():
     key = readKey("key.key", mode)
     readIV("IV.txt")
     expandKey(key, rounds, Nk)
-
-    # TODO: Idk whaat to put here
+    
     if (encOrDec == 'enc'):
         pt = readPlaintText("pt.pt")
         encrypt(pt, key, ebcOrcbc)
     else:
-        cipher = readPlaintText("cipher.enc")
-        printMatrix(cipher[0])
+        cipher = readPlaintText("encrypted.enc")
         decrypt(cipher, key, ebcOrcbc)
 
 
