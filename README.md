@@ -33,7 +33,7 @@
 ## Collaborators:
 
 1) Hamza Iftikhar - 19I-2003
-2) Hamza Nasir&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 19I-0700
+2) Hamza Nasir &nbsp;&nbsp;&nbsp;- 19I-0700
 3) Abdullah Nasir - 19I-0527
 
 
