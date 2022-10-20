@@ -30,5 +30,12 @@
 2) Implemented AES in EBC mode
 3) Implemented AES in 128, 192, 256 bit key sizes
 
+## Collaborators:
+
+1) Hamza Iftikhar - 19I-2003
+2) Hamza Nasir    - 19I-0700
+3) Abdullah Nasir - 19I-0527
+
+
 ## References:
 [AES FIPS 197 for Key Expansion Algorithm](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiZws_X2ev6AhUMiGMGHdPzC0IQFnoECBYQAQ&url=https%3A%2F%2Fnvlpubs.nist.gov%2Fnistpubs%2Ffips%2Fnist.fips.197.pdf&usg=AOvVaw0J97nT9qC7WdbmybdjrXHE)
