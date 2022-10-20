@@ -354,7 +354,7 @@ def main():
         print("Not told whether to encrypt or decrypt, exiting")
         return 0
 
-    if (ebcOrcbc.lower() != 'ebc' and ebcOrcbc.lower() != 'cbc'):
+    if (ebcOrcbc.lower() != 'ecb' and ebcOrcbc.lower() != 'cbc'):
         print("Invalid Arguments")
         return 0
     
