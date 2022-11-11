@@ -1,14 +1,14 @@
 ## HOW TO RUN:
 
 1) Python must be installed
-2) Run "aes.py" using "python ./aes.py {Key Size} {Encrypt Or Decrypt} {ECB or CBC}"
+2) Run "aes.py" using "python ./aes.py {Key Size} {Encrypt or Decrypt} {ECB or CBC}"
    Where:
   
     - Key Size = 128, 192, 256
 
     - Encrypt or Decrypt = enc or dec
 
-    - EBC or CBC = ecb or cbc
+    - ECB or CBC = ecb or cbc
 
     Example: `python ./aes.py 128 enc ecb`
 
@@ -37,23 +37,8 @@ All Input and Output files are in **Hex** format.
 ### Decryption:
 1) Decryption is the same as encryption but in reverse order
 
-## Throughput:
-
-- The throughput calculated for the encryption process is: 4096 Bytes/Sec on average.
-- The throughput calculated for the decryption process is: 4096 Bytes/Sec on average.
-
-## Extra Credit:
-
-1) Implemented AES in CBC mode
-2) Implemented AES in ECB mode
-3) Implemented AES in 128, 192, 256 bit key sizes
-
-## Collaborators:
-
-1) Hamza Iftikhar - 19I-2003
-2) Hamza Nasir &nbsp;&nbsp;&nbsp;- 19I-0700
-3) Abdullah Nasir - 19I-0527
-
 
 ## References:
 [AES FIPS 197](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiZws_X2ev6AhUMiGMGHdPzC0IQFnoECBYQAQ&url=https%3A%2F%2Fnvlpubs.nist.gov%2Fnistpubs%2Ffips%2Fnist.fips.197.pdf&usg=AOvVaw0J97nT9qC7WdbmybdjrXHE)
+
+[Galois Field Multiplication](https://en.wikipedia.org/wiki/Finite_field_arithmetic#Program_examples)
